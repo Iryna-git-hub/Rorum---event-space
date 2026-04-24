@@ -1,9 +1,26 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { ReactNode } from "react";
-import { mobileNav, primaryNav, socialLinks } from "@/lib/site-data";
+import { socialLinks } from "@/lib/site-data";
 
 type IconName = "facebook" | "instagram" | "linkedin" | "youtube" | "location" | "email" | "phone";
+
+const footerGroups = [
+  [
+    { label: "Events", href: "/events" },
+    { label: "Host an Event", href: "/host-public-event" },
+    { label: "Book the Space", href: "/host-an-event" },
+    { label: "Catering", href: "/catering-services" },
+    { label: "Event Decoration", href: "/event-decoration" },
+  ],
+  [
+    { label: "Membership", href: "/become-a-member" },
+    { label: "Volunteer With Us", href: "/work-or-volunteer-with-us" },
+    { label: "Work With Us", href: "/work-or-volunteer-with-us" },
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" },
+  ],
+] as const;
 
 function FooterIcon({ name }: { name: IconName }) {
   const iconPaths: Record<IconName, ReactNode> = {
@@ -50,27 +67,22 @@ export function SiteFooter() {
             <Image src="/rorum-logo.png" alt="RORUM logo" width={162} height={36} unoptimized />
           </Link>
 
+          <p className="footer-summary">
+            A small, intentional event space in central Copenhagen for workshops, meetings, public events, and meaningful community moments.
+          </p>
+
           <div className="contact-meta">
             <div className="contact-meta-item">
               <FooterIcon name="location" />
-              <div>
-                <strong>Location</strong>
-                <p>Norrebro, Copenhagen, Denmark</p>
-              </div>
+              <p>Central Copenhagen, Denmark</p>
             </div>
             <div className="contact-meta-item">
               <FooterIcon name="phone" />
-              <div>
-                <strong>Phone</strong>
-                <p>+45 40 40 40 40</p>
-              </div>
+              <p>+45 40 40 40 40</p>
             </div>
             <div className="contact-meta-item">
               <FooterIcon name="email" />
-              <div>
-                <strong>Email</strong>
-                <p>hello@rorum.dk</p>
-              </div>
+              <p>hello@rorum.dk</p>
             </div>
           </div>
 
@@ -84,20 +96,15 @@ export function SiteFooter() {
         </div>
 
         <div className="footer-column links-column">
-          <div>
-            {primaryNav.map((item) => (
-              <Link key={item.href} href={item.href} className="footer-link">
-                {item.label}
-              </Link>
-            ))}
-          </div>
-          <div>
-            {mobileNav.slice(2, 8).map((item) => (
-              <Link key={item.href} href={item.href} className="footer-link">
-                {item.label}
-              </Link>
-            ))}
-          </div>
+          {footerGroups.map((group, index) => (
+            <div key={index}>
+              {group.map((item, itemIndex) => (
+                <Link key={`${item.href}-${item.label}-${itemIndex}`} href={item.href} className="footer-link">
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
 

@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { languageOptions, mobileNav, primaryNav } from "@/lib/site-data";
 
 function ChevronDownIcon() {
@@ -10,7 +13,14 @@ function ChevronDownIcon() {
   );
 }
 
+function isLinkActive(pathname: string, href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export function SiteHeader() {
+  const pathname = usePathname();
+
   return (
     <header className="topbar">
       <div className="container topbar-inner">
@@ -28,21 +38,32 @@ export function SiteHeader() {
         <nav className="desktop-nav" aria-label="Primary">
           {primaryNav.map((item) => (
             "children" in item ? (
-              <div key={item.href} className="nav-dropdown">
+              <div
+                key={item.label}
+                className={`nav-dropdown ${item.children.some((child) => isLinkActive(pathname, child.href)) ? "active-nav-item" : ""}`}
+              >
                 <Link href={item.href} className="nav-trigger">
                   {item.label}
                   <ChevronDownIcon />
                 </Link>
                 <div className="dropdown-menu">
-                  {item.children.map((child) => (
-                    <Link key={child.href} href={child.href} className="dropdown-link">
+                  {item.children.map((child, childIndex) => (
+                    <Link
+                      key={`${child.href}-${child.label}-${childIndex}`}
+                      href={child.href}
+                      className={`dropdown-link ${isLinkActive(pathname, child.href) ? "active-nav-link" : ""}`}
+                    >
                       {child.label}
                     </Link>
                   ))}
                 </div>
               </div>
             ) : (
-              <Link key={item.href} href={item.href}>
+              <Link
+                key={item.href}
+                href={item.href}
+                className={isLinkActive(pathname, item.href) ? "active-nav-link" : ""}
+              >
                 {item.label}
               </Link>
             )
@@ -65,8 +86,12 @@ export function SiteHeader() {
 
       <div className="mobile-nav-wrap">
         <nav className="container mobile-nav" aria-label="Mobile primary">
-          {mobileNav.map((item) => (
-            <Link key={item.href} href={item.href}>
+          {mobileNav.map((item, index) => (
+            <Link
+              key={`${item.href}-${item.label}-${index}`}
+              href={item.href}
+              className={isLinkActive(pathname, item.href) ? "active-nav-link" : ""}
+            >
               {item.label}
             </Link>
           ))}

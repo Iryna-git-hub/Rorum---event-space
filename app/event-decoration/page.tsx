@@ -115,7 +115,7 @@ export default function EventDecorationPage() {
     <main className="page-shell decoration-page">
       <section className="decoration-hero">
         <div className="container">
-          <span className="eyebrow plain-eyebrow">Event decoration</span>
+          <span className="eyebrow plain-eyebrow">Event styling & decoration</span>
           <h1>Event Styling and Space Decoration</h1>
           <p>
             We shape thoughtful, elegant event environments with Scandinavian

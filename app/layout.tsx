@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Quicksand } from "next/font/google";
+import { Lora, Quicksand } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
@@ -9,7 +9,7 @@ const quicksand = Quicksand({
   variable: "--font-body",
 });
 
-const playfairDisplay = Playfair_Display({
+const lora = Lora({
   subsets: ["latin"],
   variable: "--font-heading",
 });
@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${quicksand.variable} ${playfairDisplay.variable}`}>
+      <body className={`${quicksand.variable} ${lora.variable}`}>
         <SiteHeader />
         {children}
         <SiteFooter />
