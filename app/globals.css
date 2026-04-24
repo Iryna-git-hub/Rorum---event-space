@@ -3720,6 +3720,17 @@ body.rorum-home-page .hero-pathway p {
   gap: 16px;
 }
 
+body.rorum-home-page .home-hero-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+body.rorum-home-page .home-hero-content {
+  margin-block: auto;
+  align-content: center;
+}
+
 .core-action-icon-wrap {
   width: 52px;
   height: 52px;

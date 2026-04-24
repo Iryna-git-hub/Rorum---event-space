@@ -11,7 +11,7 @@ export const primaryNav = [
     ],
   },
   {
-    label: "Collaboration",
+    label: "Community",
     href: "/become-a-member",
     children: [
       { label: "Membership", href: "/become-a-member" },
