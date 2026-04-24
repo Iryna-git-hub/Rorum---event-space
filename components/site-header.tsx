@@ -19,7 +19,7 @@ export function SiteHeader() {
             src="/rorum-logo.png"
             alt="RORUM logo"
             width={162}
-            height={40}
+            height={36}
             priority
             unoptimized
           />

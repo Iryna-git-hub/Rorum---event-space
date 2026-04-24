@@ -24,6 +24,9 @@ function getDayDistance(date: string) {
 
 function getEventBadge(date: string) {
   const distance = getDayDistance(date);
+  if (distance === 0) return "Today";
+  if (distance === 1) return "Tomorrow";
+  if (distance > 1 && distance <= 10) return "Soon";
 
   if (distance === 0) return "Сегодня";
   if (distance === 1) return "Завтра";
@@ -135,7 +138,7 @@ export function EventsCarousel() {
         aria-label="Featured community events"
       >
         {events.map((event, index) => (
-          <article key={event.title} className="event-slide">
+          <article key={event.slug} className="event-slide">
             <div
               className={`event-slide-media event-slide-media-${index + 1}`}
               style={{

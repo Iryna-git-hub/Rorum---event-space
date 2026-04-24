@@ -75,6 +75,15 @@ textarea {
 .brand {
   display: inline-flex;
   align-items: center;
+  flex: 0 0 auto;
+}
+
+.brand img {
+  display: block;
+  width: 162px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .desktop-nav {
@@ -2098,7 +2107,7 @@ body {
 
 /* Hero content width, section scale, and denser events */
 .home-hero-content {
-  width: min(100%, var(--max-width));
+  width: min(calc(100% - 40px), var(--max-width));
   margin: 0 auto;
 }
 
@@ -2141,7 +2150,7 @@ body {
   }
 
   .home-hero-content {
-    padding: 0 44px;
+    padding: 0;
   }
 
   .home-hero-panel > *:not(.home-hero-content) {

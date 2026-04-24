@@ -47,7 +47,7 @@ export function SiteFooter() {
       <div className="container footer-main">
         <div className="footer-column intro-column">
           <Link className="brand" href="/" aria-label="RORUM home">
-            <Image src="/rorum-logo.png" alt="RORUM logo" width={162} height={40} unoptimized />
+            <Image src="/rorum-logo.png" alt="RORUM logo" width={162} height={36} unoptimized />
           </Link>
 
           <div className="contact-meta">
